@@ -1,0 +1,92 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 1200px;
+
+}
+
+
+.nav-menu  {
+    display: flex;
+    color: aliceblue;
+    align-items: center;
+    list-style: none;
+    display: inline-block;
+    text-decoration: none;
+    margin-right: 50px;
+    font-size: 20px;
+    transition: transform 0.5s ease;
+}
+
+
+.nav-menu:hover {
+    color: rgb(191, 98, 177);
+    transform: scale(1.05);
+
+}
+
+
+.nav-connect {
+    padding: 15px 25px;
+    border-radius: 50px;
+    background: linear-gradient(267deg, #DA7C25 0.36%, #B923E1);
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.5s;
+    text-decoration: none;
+    /* Enlever la décoration du lien */
+    color: white;
+    /* Pour changer la couleur du texte du lien */
+    display: inline-block;
+    /* Permet au lien de s'afficher correctement avec le padding */
+}
+
+.nav-connect:hover {
+    transform: scale(1.05);
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 1024px) {
+    .navbar {
+        width: 95%;
+    }
+
+    .nav-menu {
+        gap: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+        /* Cache le menu par défaut */
+        flex-direction: column;
+        position: absolute;
+        top: 80px;
+        right: 0;
+        background: rgba(0, 0, 0, 0.8);
+        width: 100%;
+        text-align: center;
+        padding: 20px 0;
+    }
+
+    .nav-menu.active {
+        display: flex;
+        /* Affiche le menu lorsqu'il est actif */
+    }
+
+    .burger-menu {
+        display: block;
+        cursor: pointer;
+    }
+}
+
+/* Style du bouton burger */
+.burger-menu {
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+}
