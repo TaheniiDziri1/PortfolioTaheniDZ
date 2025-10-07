@@ -1,0 +1,569 @@
+.experiences {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+  margin: 80px 170px;
+  position: relative;
+}
+
+.experiences-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.experiences-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  background: linear-gradient(135deg, #B415FF 0%, #DF8908 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 20px;
+}
+
+.title-underline {
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #B415FF, #DF8908);
+  margin: 0 auto 20px auto;
+  border-radius: 2px;
+}
+
+.experiences-subtitle {
+  font-size: 1.2rem;
+  color: #ccc;
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.experiences-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 30px;
+  width: 100%;
+  margin-bottom: 60px;
+}
+
+.experience-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.6s ease forwards;
+  cursor: pointer;
+}
+
+.experience-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--category-color);
+}
+
+.experience-card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.experience-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.experience-category {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.category-icon {
+  font-size: 1.5rem;
+  filter: drop-shadow(0 0 10px rgba(180, 21, 255, 0.5));
+}
+
+.category-badge {
+  background: var(--category-color);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.experience-period {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ccc;
+  padding: 4px 12px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.experience-content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.experience-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.experience-company {
+  color: #DF8908;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.experience-achievements {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.achievement-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: #e0e0e0;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+.achievement-item.click-hint {
+  color: #B415FF;
+  font-style: italic;
+}
+
+.achievement-bullet {
+  width: 6px;
+  height: 6px;
+  background: var(--category-color);
+  border-radius: 50%;
+  margin-top: 8px;
+  flex-shrink: 0;
+}
+
+.experience-technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.technology-tag {
+  background: rgba(255, 255, 255, 0.1);
+  color: #e0e0e0;
+  padding: 4px 10px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.technology-tag.large {
+  padding: 6px 12px;
+  font-size: 0.9rem;
+}
+
+.technology-tag:hover {
+  background: rgba(180, 21, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.experience-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--category-color);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+  border-radius: 20px;
+}
+
+.experience-card:hover .experience-gradient {
+  opacity: 0.05;
+}
+
+.click-indicator {
+  position: absolute;
+  bottom: 15px;
+  right: 20px;
+  color: #B415FF;
+  font-size: 0.8rem;
+  font-weight: 500;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.experience-card:hover .click-indicator {
+  opacity: 1;
+}
+
+/* Modal Styles */
+.experience-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  animation: fadeIn 0.3s ease;
+}
+
+.experience-modal {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 800px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+  position: relative;
+  animation: slideUp 0.3s ease;
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close:hover {
+  background: rgba(180, 21, 255, 0.3);
+  transform: scale(1.1);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.modal-category {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.modal-period {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ccc;
+  padding: 6px 15px;
+  border-radius: 15px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.modal-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 10px 0;
+  line-height: 1.2;
+}
+
+.modal-company {
+  color: #DF8908;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0 30px 0;
+}
+
+.modal-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.detail-section {
+  margin-bottom: 25px;
+}
+
+.detail-section h4 {
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  border-bottom: 2px solid var(--category-color);
+  padding-bottom: 5px;
+}
+
+.detail-items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.detail-label {
+  color: #ccc;
+  font-weight: 500;
+}
+
+.detail-value {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.modal-technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.modal-achievements {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modal-achievement-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  color: #e0e0e0;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+.impact-text {
+  background: rgba(180, 21, 255, 0.1);
+  padding: 15px;
+  border-radius: 10px;
+  border-left: 4px solid #DF8908;
+  color: #ffffff;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Statistics Section */
+.experiences-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  width: 100%;
+  max-width: 800px;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 25px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+  transform: translateY(-5px);
+  border-color: rgba(180, 21, 255, 0.3);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #B415FF, #DF8908);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  color: #ccc;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+      opacity: 0;
+      transform: translateY(50px);
+  }
+  to { 
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1200px) {
+  .experiences {
+      margin: 80px 100px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .experiences-container {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+  }
+  
+  .modal-details-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+  }
+  
+  .experiences-stats {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .experiences {
+      margin: 60px 40px;
+      gap: 40px;
+  }
+  
+  .experiences-container {
+      grid-template-columns: 1fr;
+      gap: 20px;
+  }
+  
+  .experience-card {
+      padding: 25px;
+  }
+  
+  .experience-modal {
+      padding: 30px 20px;
+      margin: 10px;
+  }
+  
+  .modal-title {
+      font-size: 1.6rem;
+  }
+  
+  .modal-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 15px;
+  }
+  
+  .experiences-stats {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+  }
+  
+  .stat-item {
+      padding: 20px;
+  }
+  
+  .stat-number {
+      font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .experiences {
+      margin: 40px 20px;
+  }
+  
+  .experience-card {
+      padding: 20px;
+  }
+  
+  .experience-title {
+      font-size: 1.2rem;
+  }
+  
+  .experiences-stats {
+      grid-template-columns: 1fr;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .experience-card,
+  .stat-item,
+  .technology-tag,
+  .experience-modal-overlay,
+  .experience-modal {
+      transition: none;
+      animation: none;
+  }
+  
+  .experience-card {
+      opacity: 1;
+      transform: none;
+  }
+}

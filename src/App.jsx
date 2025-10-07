@@ -1,23 +1,30 @@
 import Navbar from './components/Navbar/Navbar.jsx'
 import Hero from './components/Hero/Hero.jsx'
 import About from './components/About/About.jsx'
-import Services from './components/Services/Services.jsx'
+import Experiences from './components/Experiences/Experiences.jsx'
+import Education from './components/Education/Education.jsx'
 import Contact from './components/Contact/Contact.jsx'
+import Certifications from './components/Certifications/Certifications.jsx'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 const App = () => {
-  const Page=()=>{
+  // Page d'accueil complète (Home)
+  const HomePage = () => {
     return(
-    <>
-      <Navbar/>
-      <Hero/>
-      <About/>
-      <Services/>
-      <Contact/>
-    </>
+      <>
+        <Navbar/>
+        <Hero/>
+        <About/>
+        <Experiences/>
+        <Education/>
+        <Certifications/>
+        <Contact/>
+      </>
     )
   }
-  const Page1=()=>{
+
+  // Pages individuelles pour la navigation
+  const HeroPage = () => {
     return(
       <>
         <Navbar/>
@@ -25,7 +32,8 @@ const App = () => {
       </>
     )
   }
-    const Page2=()=>{
+
+  const AboutPage = () => {
     return(
       <>
         <Navbar/>
@@ -33,22 +41,38 @@ const App = () => {
       </>
     )
   }
-    const Page3=()=>{
+
+  const ExperiencesPage = () => {
     return(
       <>
         <Navbar/>
-        <Services/>
-        
+        <Experiences/>
       </>
     )
   }
 
-      const Page4=()=>{
+  const EducationPage = () => {
+    return(
+      <>
+        <Navbar/>
+        <Education/>
+      </>
+    )
+  }
+  const CertificationsPage = () => {
+    return(
+      <>
+        <Navbar/>
+        <Certifications/>
+      </>
+    )
+  }
+
+  const ContactPage = () => {
     return(
       <>
         <Navbar/>
         <Contact/>
-        
       </>
     )
   }
@@ -56,12 +80,20 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/Hero" element={<Page1/>} />
-        <Route path="/Home" element={<Page/>} />
-        <Route path="/About" element={<Page2/>} />
-        <Route path="/Services" element={<Page3/>} />
-        <Route path="/Contact" element={<Page4/>} />
-        <Route path="/" element={<Page/>} /> {/* Vous pouvez ajouter un route par défaut */}
+        {/* Route pour la page d'accueil complète */}
+        <Route path="/" element={<HomePage/>} />
+        <Route path="/home" element={<HomePage/>} />
+        
+        {/* Routes pour les pages individuelles */}
+        <Route path="/hero" element={<HeroPage/>} />
+        <Route path="/about" element={<AboutPage/>} />
+        <Route path="/experiences" element={<ExperiencesPage/>} />
+        <Route path="/education" element={<EducationPage/>} />
+        <Route path="/certifications" element={<CertificationsPage/>} />
+        <Route path="/contact" element={<ContactPage/>} />
+        
+        {/* Route de fallback - redirige vers la home */}
+        <Route path="*" element={<HomePage/>} />
       </Routes>
     </Router>
   )
