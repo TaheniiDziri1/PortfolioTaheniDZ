@@ -61,6 +61,35 @@ const Certifications = () => {
 
     return (
         <section className="certifications-section">
+            {/* Éléments animés en arrière-plan qui se DÉPLACENT */}
+            <div className="background-elements">
+                {/* Grands cercles flottants */}
+                <div className="floating-shape shape-1"></div>
+                <div className="floating-shape shape-2"></div>
+                <div className="floating-shape shape-3"></div>
+                <div className="floating-shape shape-4"></div>
+                
+                {/* Triangles animés */}
+                <div className="floating-triangle triangle-1"></div>
+                <div className="floating-triangle triangle-2"></div>
+                <div className="floating-triangle triangle-3"></div>
+                
+                {/* Carrés animés */}
+                <div className="floating-square square-1"></div>
+                <div className="floating-square square-2"></div>
+                
+                {/* Lignes traversantes */}
+                <div className="moving-line line-1"></div>
+                <div className="moving-line line-2"></div>
+                <div className="moving-line line-3"></div>
+                
+                {/* Particules en mouvement */}
+                <div className="moving-particle particle-1"></div>
+                <div className="moving-particle particle-2"></div>
+                <div className="moving-particle particle-3"></div>
+                <div className="moving-particle particle-4"></div>
+            </div>
+
             <div className="container">
                 <div className="section-header">
                     <h2 className="section-title">Certifications</h2>

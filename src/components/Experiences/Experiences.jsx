@@ -124,17 +124,6 @@ const Experiences = () => {
         return colors[category] || "linear-gradient(135deg, #B415FF, #DF8908)";
     };
 
-    const getCategoryIcon = (category) => {
-        const icons = {
-            mobile: "",
-            data: "",
-            business: "",
-            ai: "",
-            innovation: ""
-        };
-        return icons[category] || "";
-    };
-
     const handleExperienceClick = (experience) => {
         setSelectedExperience(experience);
     };
@@ -145,12 +134,38 @@ const Experiences = () => {
 
     return (
         <div className='experiences' id="experiences">
+            
+            {/* Background Animated Shapes */}
+            <div className="experiences-background">
+                <div className="experience-shape experience-shape-1"></div>
+                <div className="experience-shape experience-shape-2"></div>
+                <div className="experience-shape experience-shape-3"></div>
+                <div className="experience-shape experience-shape-4"></div>
+
+                <div className="experience-triangle experience-triangle-1"></div>
+                <div className="experience-triangle experience-triangle-2"></div>
+                <div className="experience-triangle experience-triangle-3"></div>
+
+                <div className="experience-square experience-square-1"></div>
+                <div className="experience-square experience-square-2"></div>
+
+                <div className="experience-line experience-line-1"></div>
+                <div className="experience-line experience-line-2"></div>
+                <div className="experience-line experience-line-3"></div>
+
+                <div className="experience-particle experience-particle-1"></div>
+                <div className="experience-particle experience-particle-2"></div>
+                <div className="experience-particle experience-particle-3"></div>
+                <div className="experience-particle experience-particle-4"></div>
+            </div>
+
+            {/* Header */}
             <div className="experiences-header">
                 <h1 className="experiences-title">My Experiences</h1>
                 <div className="title-underline"></div>
-            
             </div>
-            
+
+            {/* Experience Cards */}
             <div className="experiences-container">
                 {experiencesData.map((experience, index) => (
                     <div 
@@ -164,9 +179,6 @@ const Experiences = () => {
                     >
                         <div className="experience-header">
                             <div className="experience-category">
-                                <span className="category-icon">
-                                    {getCategoryIcon(experience.category)}
-                                </span>
                                 <span className="category-badge">
                                     {experience.type}
                                 </span>
@@ -183,7 +195,6 @@ const Experiences = () => {
                             {experience.company && (
                                 <p className="experience-company">{experience.company}</p>
                             )}
-                            
                             <ul className="experience-achievements">
                                 {experience.achievements.slice(0, 3).map((achievement, idx) => (
                                     <li key={idx} className="achievement-item">
@@ -216,33 +227,19 @@ const Experiences = () => {
                 ))}
             </div>
 
-            {/* Experience Details Modal */}
+            {/* Modal */}
             {selectedExperience && (
                 <div className="experience-modal-overlay" onClick={closeDetails}>
                     <div className="experience-modal" onClick={(e) => e.stopPropagation()}>
-                        <button className="modal-close" onClick={closeDetails}>
-                            ×
-                        </button>
-                        
+                        <button className="modal-close" onClick={closeDetails}>×</button>
                         <div className="modal-header">
-                            <div className="modal-category">
-                                <span className="category-icon">
-                                    {getCategoryIcon(selectedExperience.category)}
-                                </span>
-                                <span className="category-badge">
-                                    {selectedExperience.type}
-                                </span>
-                            </div>
-                            <div className="modal-period">
-                                {selectedExperience.period}
-                            </div>
+                            <span className="category-badge">{selectedExperience.type}</span>
+                            <div className="modal-period">{selectedExperience.period}</div>
                         </div>
-
                         <h2 className="modal-title">{selectedExperience.title}</h2>
                         {selectedExperience.company && (
                             <p className="modal-company">{selectedExperience.company}</p>
                         )}
-
                         <div className="modal-details-grid">
                             <div className="detail-section">
                                 <h4>Project Details</h4>
@@ -266,9 +263,7 @@ const Experiences = () => {
                                 <h4>Tools & Technologies</h4>
                                 <div className="modal-technologies">
                                     {selectedExperience.technologies.map((tech, index) => (
-                                        <span key={index} className="technology-tag large">
-                                            {tech}
-                                        </span>
+                                        <span key={index} className="technology-tag large">{tech}</span>
                                     ))}
                                 </div>
                             </div>
@@ -294,9 +289,8 @@ const Experiences = () => {
                 </div>
             )}
 
-            
         </div>
     );
-}
+};
 
 export default Experiences;

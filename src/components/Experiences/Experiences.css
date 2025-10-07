@@ -6,11 +6,283 @@
   gap: 60px;
   margin: 80px 170px;
   position: relative;
+  overflow: hidden;
+}
+
+/* Éléments flottants en arrière-plan */
+.experiences-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Grands cercles flottants */
+.experience-shape {
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(180, 21, 255, 0.1), rgba(223, 136, 8, 0.1));
+  border: 1px solid rgba(180, 21, 255, 0.2);
+  animation: floatExperienceShape 25s ease-in-out infinite;
+}
+
+.experience-shape-1 {
+  width: 180px;
+  height: 180px;
+  top: 15%;
+  left: 8%;
+  animation-delay: 0s;
+  animation-duration: 30s;
+}
+
+.experience-shape-2 {
+  width: 140px;
+  height: 140px;
+  bottom: 20%;
+  right: 10%;
+  animation-delay: 7s;
+  animation-duration: 35s;
+}
+
+.experience-shape-3 {
+  width: 100px;
+  height: 100px;
+  top: 45%;
+  left: 85%;
+  animation-delay: 14s;
+  animation-duration: 25s;
+}
+
+.experience-shape-4 {
+  width: 160px;
+  height: 160px;
+  bottom: 30%;
+  left: 75%;
+  animation-delay: 21s;
+  animation-duration: 40s;
+}
+
+/* Triangles animés */
+.experience-triangle {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  opacity: 0.1;
+  animation: floatExperienceTriangle 18s ease-in-out infinite;
+}
+
+.experience-triangle-1 {
+  border-width: 0 45px 77.9px 45px;
+  border-color: transparent transparent #B415FF transparent;
+  top: 25%;
+  right: 18%;
+  animation-delay: 3s;
+}
+
+.experience-triangle-2 {
+  border-width: 77.9px 45px 0 45px;
+  border-color: #DF8908 transparent transparent transparent;
+  bottom: 35%;
+  left: 12%;
+  animation-delay: 11s;
+}
+
+.experience-triangle-3 {
+  border-width: 22px 0 22px 38.1px;
+  border-color: transparent transparent transparent #B415FF;
+  top: 65%;
+  right: 28%;
+  animation-delay: 16s;
+}
+
+/* Carrés animés */
+.experience-square {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  border: 1px solid rgba(223, 136, 8, 0.2);
+  background: rgba(223, 136, 8, 0.05);
+  animation: floatExperienceSquare 22s ease-in-out infinite;
+}
+
+.experience-square-1 {
+  top: 20%;
+  right: 22%;
+  animation-delay: 4s;
+}
+
+.experience-square-2 {
+  bottom: 25%;
+  left: 18%;
+  animation-delay: 13s;
+}
+
+/* Lignes traversantes */
+.experience-line {
+  position: absolute;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #B415FF, #DF8908, transparent);
+  opacity: 0.3;
+  animation: moveExperienceLine 15s linear infinite;
+}
+
+.experience-line-1 {
+  top: 30%;
+  width: 120px;
+  animation-delay: 0s;
+}
+
+.experience-line-2 {
+  bottom: 40%;
+  width: 180px;
+  animation-delay: 5s;
+}
+
+.experience-line-3 {
+  top: 70%;
+  width: 150px;
+  animation-delay: 10s;
+}
+
+/* Particules en mouvement */
+.experience-particle {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: linear-gradient(135deg, #B415FF, #DF8908);
+  border-radius: 50%;
+  opacity: 0.4;
+  animation: moveExperienceParticle 10s linear infinite;
+}
+
+.experience-particle-1 {
+  top: 35%;
+  left: 8%;
+  animation-delay: 2s;
+}
+
+.experience-particle-2 {
+  top: 75%;
+  right: 12%;
+  animation-delay: 6s;
+}
+
+.experience-particle-3 {
+  bottom: 45%;
+  left: 25%;
+  animation-delay: 8s;
+}
+
+.experience-particle-4 {
+  top: 55%;
+  right: 35%;
+  animation-delay: 12s;
+}
+
+/* Animations spécifiques pour Experiences */
+@keyframes floatExperienceShape {
+  0%, 100% {
+      transform: translate(0, 0) rotate(0deg) scale(1);
+      opacity: 0.3;
+  }
+  25% {
+      transform: translate(60px, -40px) rotate(90deg) scale(1.15);
+      opacity: 0.5;
+  }
+  50% {
+      transform: translate(30px, -60px) rotate(180deg) scale(0.95);
+      opacity: 0.4;
+  }
+  75% {
+      transform: translate(-40px, -30px) rotate(270deg) scale(1.1);
+      opacity: 0.6;
+  }
+}
+
+@keyframes floatExperienceTriangle {
+  0%, 100% {
+      transform: translate(0, 0) rotate(0deg);
+      opacity: 0.1;
+  }
+  33% {
+      transform: translate(50px, -35px) rotate(120deg);
+      opacity: 0.25;
+  }
+  66% {
+      transform: translate(-25px, 40px) rotate(240deg);
+      opacity: 0.15;
+  }
+}
+
+@keyframes floatExperienceSquare {
+  0%, 100% {
+      transform: translate(0, 0) rotate(0deg);
+      opacity: 0.2;
+  }
+  25% {
+      transform: translate(70px, -50px) rotate(90deg);
+      opacity: 0.4;
+  }
+  50% {
+      transform: translate(40px, 25px) rotate(180deg);
+      opacity: 0.3;
+  }
+  75% {
+      transform: translate(-50px, -15px) rotate(270deg);
+      opacity: 0.5;
+  }
+}
+
+@keyframes moveExperienceLine {
+  0% {
+      transform: translateX(-250px);
+      opacity: 0;
+  }
+  10% {
+      opacity: 0.6;
+  }
+  50% {
+      opacity: 0.9;
+  }
+  90% {
+      opacity: 0.4;
+  }
+  100% {
+      transform: translateX(calc(100vw + 250px));
+      opacity: 0;
+  }
+}
+
+@keyframes moveExperienceParticle {
+  0% {
+      transform: translate(0, 0);
+      opacity: 0;
+  }
+  10% {
+      opacity: 0.7;
+  }
+  50% {
+      transform: translate(120px, -60px);
+      opacity: 0.9;
+  }
+  90% {
+      opacity: 0.4;
+  }
+  100% {
+      transform: translate(250px, -120px);
+      opacity: 0;
+  }
 }
 
 .experiences-header {
   text-align: center;
   margin-bottom: 40px;
+  position: relative;
+  z-index: 2;
 }
 
 .experiences-title {
@@ -45,6 +317,8 @@
   gap: 30px;
   width: 100%;
   margin-bottom: 60px;
+  position: relative;
+  z-index: 2;
 }
 
 .experience-card {
@@ -408,6 +682,8 @@
   gap: 30px;
   width: 100%;
   max-width: 800px;
+  position: relative;
+  z-index: 2;
 }
 
 .stat-item {
@@ -531,6 +807,18 @@
   .stat-number {
       font-size: 2rem;
   }
+  
+  /* Réduire les animations sur mobile */
+  .experience-shape,
+  .experience-triangle,
+  .experience-square {
+      display: none;
+  }
+  
+  .experience-line,
+  .experience-particle {
+      opacity: 0.1;
+  }
 }
 
 @media screen and (max-width: 480px) {
@@ -553,6 +841,10 @@
 
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
+  .experiences-background * {
+      animation: none !important;
+  }
+  
   .experience-card,
   .stat-item,
   .technology-tag,

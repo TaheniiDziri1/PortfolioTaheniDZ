@@ -2,17 +2,292 @@
     padding: 80px 0;
     background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 100%);
     position: relative;
+    overflow: hidden;
 }
 
+/* Éléments flottants en arrière-plan */
+.background-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Grands cercles flottants */
+.floating-shape {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(180, 21, 255, 0.1), rgba(223, 136, 8, 0.1));
+    border: 1px solid rgba(180, 21, 255, 0.2);
+    animation: floatShape 20s ease-in-out infinite;
+}
+
+.shape-1 {
+    width: 200px;
+    height: 200px;
+    top: 10%;
+    left: 5%;
+    animation-delay: 0s;
+    animation-duration: 25s;
+}
+
+.shape-2 {
+    width: 150px;
+    height: 150px;
+    bottom: 15%;
+    right: 8%;
+    animation-delay: 5s;
+    animation-duration: 30s;
+}
+
+.shape-3 {
+    width: 120px;
+    height: 120px;
+    top: 40%;
+    left: 80%;
+    animation-delay: 10s;
+    animation-duration: 20s;
+}
+
+.shape-4 {
+    width: 180px;
+    height: 180px;
+    bottom: 25%;
+    left: 70%;
+    animation-delay: 15s;
+    animation-duration: 35s;
+}
+
+/* Triangles animés */
+.floating-triangle {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    opacity: 0.1;
+    animation: floatTriangle 15s ease-in-out infinite;
+}
+
+.triangle-1 {
+    border-width: 0 50px 86.6px 50px;
+    border-color: transparent transparent #B415FF transparent;
+    top: 20%;
+    right: 15%;
+    animation-delay: 2s;
+}
+
+.triangle-2 {
+    border-width: 86.6px 50px 0 50px;
+    border-color: #DF8908 transparent transparent transparent;
+    bottom: 30%;
+    left: 10%;
+    animation-delay: 8s;
+}
+
+.triangle-3 {
+    border-width: 25px 0 25px 43.3px;
+    border-color: transparent transparent transparent #B415FF;
+    top: 60%;
+    right: 25%;
+    animation-delay: 12s;
+}
+
+/* Carrés animés */
+.floating-square {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border: 1px solid rgba(223, 136, 8, 0.2);
+    background: rgba(223, 136, 8, 0.05);
+    animation: floatSquare 18s ease-in-out infinite;
+}
+
+.square-1 {
+    top: 15%;
+    right: 20%;
+    animation-delay: 3s;
+}
+
+.square-2 {
+    bottom: 20%;
+    left: 15%;
+    animation-delay: 9s;
+}
+
+/* Lignes traversantes */
+.moving-line {
+    position: absolute;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #B415FF, #DF8908, transparent);
+    opacity: 0.3;
+    animation: moveLine 12s linear infinite;
+}
+
+.line-1 {
+    top: 25%;
+    width: 100px;
+    animation-delay: 0s;
+}
+
+.line-2 {
+    bottom: 35%;
+    width: 150px;
+    animation-delay: 4s;
+}
+
+.line-3 {
+    top: 65%;
+    width: 120px;
+    animation-delay: 8s;
+}
+
+/* Particules en mouvement */
+.moving-particle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: linear-gradient(135deg, #B415FF, #DF8908);
+    border-radius: 50%;
+    opacity: 0.4;
+    animation: moveParticle 8s linear infinite;
+}
+
+.particle-1 {
+    top: 30%;
+    left: 5%;
+    animation-delay: 1s;
+}
+
+.particle-2 {
+    top: 70%;
+    right: 10%;
+    animation-delay: 3s;
+}
+
+.particle-3 {
+    bottom: 40%;
+    left: 20%;
+    animation-delay: 5s;
+}
+
+.particle-4 {
+    top: 50%;
+    right: 30%;
+    animation-delay: 7s;
+}
+
+/* Animations */
+@keyframes floatShape {
+    0%, 100% {
+        transform: translate(0, 0) rotate(0deg) scale(1);
+        opacity: 0.3;
+    }
+    25% {
+        transform: translate(50px, -30px) rotate(90deg) scale(1.1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: translate(20px, -50px) rotate(180deg) scale(0.9);
+        opacity: 0.4;
+    }
+    75% {
+        transform: translate(-30px, -20px) rotate(270deg) scale(1.05);
+        opacity: 0.6;
+    }
+}
+
+@keyframes floatTriangle {
+    0%, 100% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 0.1;
+    }
+    33% {
+        transform: translate(40px, -25px) rotate(120deg);
+        opacity: 0.2;
+    }
+    66% {
+        transform: translate(-20px, 30px) rotate(240deg);
+        opacity: 0.15;
+    }
+}
+
+@keyframes floatSquare {
+    0%, 100% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 0.2;
+    }
+    25% {
+        transform: translate(60px, -40px) rotate(90deg);
+        opacity: 0.4;
+    }
+    50% {
+        transform: translate(30px, 20px) rotate(180deg);
+        opacity: 0.3;
+    }
+    75% {
+        transform: translate(-40px, -10px) rotate(270deg);
+        opacity: 0.5;
+    }
+}
+
+@keyframes moveLine {
+    0% {
+        transform: translateX(-200px);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.3;
+    }
+    100% {
+        transform: translateX(calc(100vw + 200px));
+        opacity: 0;
+    }
+}
+
+@keyframes moveParticle {
+    0% {
+        transform: translate(0, 0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.6;
+    }
+    50% {
+        transform: translate(100px, -50px);
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.3;
+    }
+    100% {
+        transform: translate(200px, -100px);
+        opacity: 0;
+    }
+}
+
+/* Conteneur principal */
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    position: relative;
+    z-index: 2;
 }
 
 .section-header {
     text-align: center;
     margin-bottom: 60px;
+    position: relative;
+    z-index: 2;
 }
 
 .section-title {
@@ -39,6 +314,8 @@
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
     justify-content: center;
+    position: relative;
+    z-index: 2;
 }
 
 .certification-card {
@@ -50,6 +327,9 @@
     transition: all 0.3s ease;
     cursor: pointer;
     position: relative;
+    animation: cardAppear 0.6s ease forwards;
+    opacity: 0;
+    transform: translateY(30px);
 }
 
 .certification-card:hover {
@@ -99,11 +379,6 @@
 
 .certification-card:hover .cert-overlay {
     opacity: 1;
-}
-
-.view-icon {
-    font-size: 2rem;
-    margin-bottom: 10px;
 }
 
 .view-text {
@@ -201,89 +476,20 @@
     background: rgba(0, 0, 0, 0.8);
 }
 
-.cert-number {
+.modal-info .cert-title {
     color: white;
+    font-size: 1.3rem;
     font-weight: 600;
-    font-size: 1.1rem;
+    text-align: center;
+    display: block;
     background: linear-gradient(135deg, #B415FF, #DF8908);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-}
-
-/* Responsive Design */
-@media screen and (max-width: 1024px) {
-    .certifications-grid {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 25px;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .certifications-section {
-        padding: 60px 0;
-    }
-    
-    .section-header {
-        margin-bottom: 40px;
-    }
-    
-    .certifications-grid {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 20px;
-    }
-    
-    .cert-image-wrapper {
-        height: 200px;
-    }
-    
-    .modal-content {
-        max-width: 95%;
-        max-height: 95%;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .certifications-section {
-        padding: 40px 0;
-    }
-    
-    .container {
-        padding: 0 15px;
-    }
-    
-    .certifications-grid {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-    
-    .cert-image-wrapper {
-        height: 180px;
-    }
-    
-    .cert-badge {
-        top: 10px;
-        right: 10px;
-        padding: 4px 10px;
-        font-size: 0.7rem;
-    }
-    
-    .view-text {
-        font-size: 1rem;
-    }
-    
-    .modal-info {
-        padding: 15px;
-    }
+    padding: 10px;
 }
 
 /* Animation pour l'apparition des cartes */
-.certification-card {
-    animation: cardAppear 0.6s ease forwards;
-    opacity: 0;
-    transform: translateY(30px);
-}
-
 .certification-card:nth-child(1) { animation-delay: 0.1s; }
 .certification-card:nth-child(2) { animation-delay: 0.2s; }
 .certification-card:nth-child(3) { animation-delay: 0.3s; }
@@ -298,41 +504,54 @@
     }
 }
 
-/* Support reduced motion */
-@media (prefers-reduced-motion: reduce) {
-    .certification-card,
-    .modal-content {
-        animation: none;
-        opacity: 1;
-        transform: none;
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .certifications-section {
+        padding: 60px 0;
     }
     
-    .certification-card:hover {
-        transform: none;
+    .certifications-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
     }
     
-    .certification-card:hover .cert-image {
-        transform: none;
+    .cert-image-wrapper {
+        height: 200px;
+    }
+    
+    /* Réduire les animations sur mobile */
+    .floating-shape,
+    .floating-triangle,
+    .floating-square {
+        display: none;
+    }
+    
+    .moving-line,
+    .moving-particle {
+        opacity: 0.1;
     }
 }
 
-/* Touch device optimizations */
-@media (hover: none) and (pointer: coarse) {
-    .cert-overlay {
+@media screen and (max-width: 480px) {
+    .certifications-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .cert-image-wrapper {
+        height: 180px;
+    }
+}
+
+/* Support reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .background-elements * {
+        animation: none !important;
+    }
+    
+    .certification-card {
+        animation: none;
         opacity: 1;
-        background: linear-gradient(
-            to bottom,
-            transparent 0%,
-            transparent 50%,
-            rgba(0, 0, 0, 0.7) 100%
-        );
-    }
-    
-    .view-text {
-        font-size: 0.9rem;
-    }
-    
-    .certification-card:active {
-        transform: scale(0.98);
+        transform: none;
     }
 }

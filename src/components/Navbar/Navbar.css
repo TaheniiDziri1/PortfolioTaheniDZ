@@ -24,6 +24,7 @@
 .nav-brand {
     display: flex;
     align-items: center;
+    z-index: 1002;
 }
 
 .brand-link {
@@ -57,7 +58,7 @@
 .nav-menu {
     display: flex;
     align-items: center;
-    gap: 40px;
+    gap: 30px;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -76,6 +77,7 @@
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    white-space: nowrap;
 }
 
 .nav-link::before {
@@ -109,6 +111,7 @@
 .nav-icon {
     font-size: 1.1rem;
     transition: transform 0.3s ease;
+    flex-shrink: 0;
 }
 
 .nav-link:hover .nav-icon {
@@ -119,6 +122,7 @@
 .nav-actions {
     display: flex;
     align-items: center;
+    z-index: 1002;
 }
 
 .nav-connect {
@@ -135,6 +139,7 @@
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    white-space: nowrap;
 }
 
 .nav-connect::before {
@@ -160,10 +165,20 @@
 .connect-icon {
     font-size: 1.1rem;
     transition: transform 0.3s ease;
+    flex-shrink: 0;
 }
 
 .nav-connect:hover .connect-icon {
     transform: scale(1.2) rotate(10deg);
+}
+
+/* Mobile CTA Button */
+.mobile-connect {
+    margin-top: 20px;
+    justify-content: center;
+    width: 100%;
+    max-width: 200px;
+    align-self: center;
 }
 
 /* Burger Menu */
@@ -177,7 +192,7 @@
     border: none;
     cursor: pointer;
     padding: 0;
-    z-index: 1001;
+    z-index: 1002;
 }
 
 .burger-menu span {
@@ -196,6 +211,7 @@
 
 .burger-menu.active span:nth-child(2) {
     opacity: 0;
+    transform: translateX(-10px);
 }
 
 .burger-menu.active span:nth-child(3) {
@@ -221,11 +237,16 @@
     }
     
     .nav-menu {
-        gap: 30px;
+        gap: 25px;
     }
     
     .nav-link {
         padding: 8px 16px;
+        font-size: 0.95rem;
+    }
+    
+    .nav-connect {
+        padding: 10px 25px;
         font-size: 0.95rem;
     }
 }
@@ -241,15 +262,18 @@
         right: -100%;
         width: 280px;
         height: 100vh;
+        height: 100dvh;
         background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
         padding: 100px 30px 30px;
-        gap: 20px;
+        gap: 15px;
         transition: right 0.3s ease;
         border-left: 1px solid rgba(255, 255, 255, 0.1);
         box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5);
+        z-index: 1001;
+        overflow-y: auto;
     }
 
     .nav-menu.active {
@@ -262,19 +286,23 @@
         font-size: 1.1rem;
         border-radius: 12px;
         justify-content: flex-start;
+        margin-bottom: 5px;
     }
 
     .burger-menu {
         display: flex;
     }
 
-    .nav-connect {
-        padding: 10px 20px;
-        font-size: 0.9rem;
+    .nav-actions {
+        display: none;
     }
 
     .brand-text {
         font-size: 1.3rem;
+    }
+    
+    .brand-icon {
+        font-size: 1.6rem;
     }
 }
 
@@ -284,25 +312,56 @@
     }
 
     .nav-menu {
-        width: 100%;
-        right: -100%;
-    }
-
-    .nav-menu.active {
-        right: 0;
+        width: 85%;
+        padding: 90px 25px 25px;
     }
 
     .brand-text {
         font-size: 1.2rem;
     }
 
-    .nav-connect {
-        padding: 8px 16px;
-        font-size: 0.85rem;
-    }
-
     .brand-icon {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
+    }
+    
+    .nav-link {
+        padding: 14px 18px;
+        font-size: 1rem;
+    }
+    
+    .mobile-connect {
+        padding: 14px 25px;
+        font-size: 1rem;
+        margin-top: 30px;
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 360px) {
+    .navbar {
+        padding: 10px 3%;
+    }
+    
+    .nav-menu {
+        width: 90%;
+        padding: 80px 20px 20px;
+    }
+    
+    .brand-text {
+        font-size: 1.1rem;
+    }
+    
+    .nav-link {
+        font-size: 0.95rem;
+        padding: 12px 16px;
+    }
+}
+
+/* Safe area insets for notched phones */
+@supports(padding: max(0px)) {
+    .navbar {
+        padding-left: max(20px, env(safe-area-inset-left));
+        padding-right: max(20px, env(safe-area-inset-right));
     }
 }
 
@@ -325,6 +384,10 @@
     .nav-connect:hover {
         transform: none;
     }
+    
+    .nav-menu {
+        transition: none;
+    }
 }
 
 /* High contrast support */
@@ -341,5 +404,22 @@
     .nav-link.active {
         border: 2px solid #B415FF;
         background: rgba(180, 21, 255, 0.1);
+    }
+    
+    .nav-connect {
+        border: 2px solid #B415FF;
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .nav-link:hover,
+    .nav-connect:hover {
+        transform: none;
+    }
+    
+    .nav-link:active,
+    .nav-connect:active {
+        transform: scale(0.95);
     }
 }

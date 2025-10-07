@@ -1,10 +1,11 @@
-import "./Navbar.css"
+import "./Navbar.css";
 import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
     const location = useLocation();
 
     const toggleMenu = () => {
@@ -16,8 +17,19 @@ const Navbar = () => {
             setIsScrolled(window.scrollY > 50);
         };
 
+        // Check if mobile on mount and resize
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+
+        checkMobile();
         window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+        window.addEventListener('resize', checkMobile);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('resize', checkMobile);
+        };
     }, []);
 
     useEffect(() => {
@@ -29,10 +41,9 @@ const Navbar = () => {
     };
 
     return (
-        <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
+        <nav className={`navbar ${isScrolled ? 'scrolled' : ''} ${isMobile ? 'mobile' : ''}`}>
             <div className="nav-brand">
-                <Link to="/" className="brand-link">
-                    <span className="brand-icon"></span>
+                <Link to="/" className="brand-link" onClick={() => setIsMenuOpen(false)}>
                     <span className="brand-text">Taheni Dziri</span>
                 </Link>
             </div>
@@ -42,63 +53,73 @@ const Navbar = () => {
                 <Link 
                     className={`nav-link ${isActiveLink('/') || isActiveLink('/home') ? 'active' : ''}`} 
                     to="/"
+                    onClick={() => setIsMenuOpen(false)}
                 >
-                    <span className="nav-icon"></span>
                     Home
                 </Link>
                 <Link 
                     className={`nav-link ${isActiveLink('/about') ? 'active' : ''}`} 
                     to="/about"
+                    onClick={() => setIsMenuOpen(false)}
                 >
-                    <span className="nav-icon"></span>
                     About Me
                 </Link>
                 <Link 
                     className={`nav-link ${isActiveLink('/experiences') ? 'active' : ''}`} 
                     to="/experiences"
+                    onClick={() => setIsMenuOpen(false)}
                 >
-                    <span className="nav-icon"></span>
                     Experiences
                 </Link>
                 <Link 
                     className={`nav-link ${isActiveLink('/education') ? 'active' : ''}`} 
                     to="/education"
+                    onClick={() => setIsMenuOpen(false)}
                 >
-                    <span className="nav-icon"></span>
                     Education
                 </Link>
-
-
                 <Link 
                     className={`nav-link ${isActiveLink('/certifications') ? 'active' : ''}`} 
                     to="/certifications"
+                    onClick={() => setIsMenuOpen(false)}
                 >
-                    <span className="nav-icon"></span>
                     Certifications
                 </Link>
-                
                 <Link 
                     className={`nav-link ${isActiveLink('/contact') ? 'active' : ''}`} 
                     to="/contact"
+                    onClick={() => setIsMenuOpen(false)}
                 >
-                    <span className="nav-icon"></span>
                     Contact
                 </Link>
+
+                {/* Mobile CTA Button */}
+                {isMobile && (
+                    <Link 
+                        className="nav-connect mobile-connect" 
+                        to="/contact"
+                        onClick={() => setIsMenuOpen(false)}
+                    >
+                        Let's Talk
+                    </Link>
+                )}
             </div>
 
-            {/* CTA Button */}
-            <div className="nav-actions">
-                <Link className="nav-connect" to="/contact">
-                    <span className="connect-icon"></span>
-                    Let's Talk
-                </Link>
-            </div>
+            {/* Desktop CTA Button */}
+            {!isMobile && (
+                <div className="nav-actions">
+                    <Link className="nav-connect" to="/contact">
+                        Let's Talk
+                    </Link>
+                </div>
+            )}
 
             {/* Mobile Menu Button */}
             <button 
                 className={`burger-menu ${isMenuOpen ? 'active' : ''}`}
                 onClick={toggleMenu}
                 aria-label="Toggle menu"
+                aria-expanded={isMenuOpen}
             >
                 <span></span>
                 <span></span>
@@ -106,7 +127,13 @@ const Navbar = () => {
             </button>
 
             {/* Mobile Overlay */}
-            {isMenuOpen && <div className="menu-overlay" onClick={toggleMenu}></div>}
+            {isMenuOpen && (
+                <div 
+                    className="menu-overlay" 
+                    onClick={toggleMenu}
+                    aria-hidden="true"
+                ></div>
+            )}
         </nav>
     );
 }
